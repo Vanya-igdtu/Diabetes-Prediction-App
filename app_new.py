@@ -4,9 +4,9 @@ import joblib
 from transformers import pipeline
 
 # ------------------ LOAD MODEL & ENCODERS ------------------
-model = joblib.load("C:/Users/vanya/streamlit_models/diabetes_model.pkl")
-le_gender = joblib.load("C:/Users/vanya/streamlit_models/le_gender.pkl")
-le_smoking = joblib.load("C:/Users/vanya/streamlit_models/le_smoking.pkl")
+model = joblib.load("models/diabetes_model.pkl")
+le_gender = joblib.load("models/le_gender.pkl")
+le_smoking = joblib.load("models/le_smoking.pkl")
 
 # ------------------ LOAD CHATBOT ------------------
 chatbot = pipeline("text-generation", model="microsoft/DialoGPT-medium")
