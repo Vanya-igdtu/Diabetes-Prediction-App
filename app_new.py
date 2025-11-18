@@ -9,12 +9,14 @@ le_gender = joblib.load("models/le_gender.pkl")
 le_smoking = joblib.load("models/le_smoking.pkl")
 
 # ------------------ LOAD CHATBOT ------------------
-chatbot = pipeline("text-generation", model="microsoft/DialoGPT-medium")
+@st.cache_resource
+def load_chatbot():
+    return pipeline("text-generation", model="microsoft/DialoGPT-medium")
 
 def get_bot_response(user_input):
+    chatbot = load_chatbot()   # Load cached model
     response = chatbot(user_input, max_length=100, pad_token_id=50256)
     full_text = response[0]['generated_text']
-    # Remove the user input from the start, keep only new reply
     return full_text[len(user_input):].strip()
 
 # ------------------ SIDEBAR NAVIGATION ------------------
